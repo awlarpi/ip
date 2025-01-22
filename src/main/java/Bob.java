@@ -87,6 +87,16 @@ public class Bob {
                     System.out.println("Got it. I've added this task:");
                     System.out.println("  " + task);
                     System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                } else if (input.startsWith("delete ")) {
+                    int taskNumber = Integer.parseInt(input.substring(7));
+                    if (taskNumber <= 0 || taskNumber > tasks.size()) {
+                        throw new IndexOutOfBoundsException(
+                                "Whoa there! That task number is out of bounds. Try again, buddy!");
+                    }
+                    Task removedTask = tasks.remove(taskNumber - 1);
+                    System.out.println("Noted. I've removed this task:");
+                    System.out.println("  " + removedTask);
+                    System.out.println("Now you have " + tasks.size() + " tasks in the list.");
                 } else {
                     System.out.println("Hmm, I don't recognize that command. Try again!");
                 }

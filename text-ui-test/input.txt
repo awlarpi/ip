@@ -4,4 +4,14 @@ event project meeting /from Monday /to Tuesday
 list
 mark 1
 unmark 1
+todo write report
+deadline finish project /by Friday
+event team outing /from Saturday /to Sunday
+list
+mark 3
+mark 4
+unmark 3
+delete 2
+delete 1
+list
 bye
