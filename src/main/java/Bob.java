@@ -1,51 +1,49 @@
 import java.util.Scanner;
+import java.util.function.Consumer;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Bob {
+    private static final String FILE_PATH = "data/tasks.txt";
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Task> tasks = new ArrayList<>();
+        ArrayList<Task> tasks = loadTasks();
+
         System.out.println("Hello! I'm Bob");
         System.out.println("What can I do for you?");
+
+        Map<CommandType, Consumer<String>> commandHandlers = new HashMap<>();
+        commandHandlers.put(CommandType.LIST, input -> listTasks(tasks));
+        commandHandlers.put(CommandType.MARK, input -> markTask(tasks, input));
+        commandHandlers.put(CommandType.UNMARK, input -> unmarkTask(tasks, input));
+        commandHandlers.put(CommandType.TODO, input -> addTodoTask(tasks, input));
+        commandHandlers.put(CommandType.DEADLINE, input -> addDeadlineTask(tasks, input));
+        commandHandlers.put(CommandType.EVENT, input -> addEventTask(tasks, input));
+        commandHandlers.put(CommandType.DELETE, input -> deleteTask(tasks, input));
 
         while (true) {
             String input = scanner.nextLine();
             CommandType commandType = getCommandType(input);
             try {
-                switch (commandType) {
-                    case BYE:
-                        break;
-                    case LIST:
-                        listTasks(tasks);
-                        continue;
-                    case MARK:
-                        markTask(tasks, input);
-                        continue;
-                    case UNMARK:
-                        unmarkTask(tasks, input);
-                        continue;
-                    case TODO:
-                        addTodoTask(tasks, input);
-                        continue;
-                    case DEADLINE:
-                        addDeadlineTask(tasks, input);
-                        continue;
-                    case EVENT:
-                        addEventTask(tasks, input);
-                        continue;
-                    case DELETE:
-                        deleteTask(tasks, input);
-                        continue;
-                    default:
-                        System.out.println("Hmm, I don't recognize that command. Try again!");
-                        continue;
+                if (commandType == CommandType.BYE) {
+                    break;
                 }
-                break;
+                commandHandlers
+                        .getOrDefault(commandType,
+                                cmd -> System.out.println("Hmm, I don't recognize that command. Try again!"))
+                        .accept(input);
+                saveTasks(tasks);
             } catch (NumberFormatException e) {
                 System.out.println("Whoa! That task number format is wacky. Try again, pal!");
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println(e.getMessage());
-            } catch (IllegalArgumentException e) {
+            } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -170,6 +168,31 @@ public class Bob {
             return CommandType.DELETE;
         } else {
             return CommandType.UNKNOWN;
+        }
+    }
+
+    private static void saveTasks(ArrayList<Task> tasks) {
+        File file = new File(FILE_PATH);
+        file.getParentFile().mkdirs(); // Create directories if they do not exist
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+            oos.writeObject(tasks);
+        } catch (IOException e) {
+            System.out.println("Error saving tasks: " + e.getMessage());
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private static ArrayList<Task> loadTasks() {
+        File file = new File(FILE_PATH);
+        if (!file.exists()) {
+            file.getParentFile().mkdirs(); // Create directories if they do not exist
+            return new ArrayList<>();
+        }
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+            return (ArrayList<Task>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error loading tasks: " + e.getMessage());
+            return new ArrayList<>();
         }
     }
 }
