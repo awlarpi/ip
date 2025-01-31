@@ -1,3 +1,5 @@
+package bob;
+
 public class ParsedCommand {
     private CommandType commandType;
     private String description;

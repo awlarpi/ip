@@ -1,3 +1,5 @@
+package bob;
+
 public class Parser {
     public static ParsedCommand parse(String input) {
         ParsedCommand parsedCommand = new ParsedCommand(getCommandType(input));

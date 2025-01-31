@@ -1,3 +1,5 @@
+package bob;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -18,7 +20,13 @@ public class Storage {
         File file = new File(filePath);
         if (!file.exists()) {
             file.getParentFile().mkdirs(); // Create directories if they do not exist
-            return new ArrayList<>();
+            ArrayList<Task> tasks = new ArrayList<>();
+            try {
+                save(tasks);
+            } catch (IOException e) {
+                throw new IOException("Error creating new file: " + e.getMessage());
+            }
+            return tasks;
         }
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
             return (ArrayList<Task>) ois.readObject();
