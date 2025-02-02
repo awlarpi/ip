@@ -38,7 +38,7 @@ public class Parser {
                 parsedCommand.setTaskNumber(Integer.parseInt(input.substring(7).trim()));
                 break;
             default:
-                break;
+                throw new IllegalArgumentException("Yikes! I'm not sure what you're trying to say. Try again!");
         }
         return parsedCommand;
     }
