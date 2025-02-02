@@ -36,6 +36,8 @@ public class Parser {
                             "Yikes! The event command format is all wrong. Give it another shot!");
                 }
                 return new EventCommand(eventParts[0].trim(), times[0].trim(), times[1].trim());
+            case "find":
+                return new FindCommand(arguments.trim());
             case "delete":
                 return new DeleteCommand(Integer.parseInt(arguments.trim()));
             default:

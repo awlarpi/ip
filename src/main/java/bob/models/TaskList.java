@@ -1,6 +1,8 @@
 package bob.models;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class TaskList {
     private ArrayList<Task> tasks;
@@ -31,6 +33,12 @@ public class TaskList {
 
     public ArrayList<Task> getTasks() {
         return tasks;
+    }
+
+    public List<Task> findTasksByKeyword(String keyword) {
+        return tasks.stream()
+                .filter(task -> task.getDescription().contains(keyword))
+                .collect(Collectors.toList());
     }
 
     // override toString method to print out all tasks in the list

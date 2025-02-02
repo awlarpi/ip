@@ -1,7 +1,10 @@
 package bob.models;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 public class TaskListTest {
 
@@ -30,5 +33,21 @@ public class TaskListTest {
         Task task = new ToDo("Test ToDo");
         taskList.addTask(task);
         assertEquals("[T][ ] Test ToDo", taskList.getTask(0).toString());
+    }
+
+    @Test
+    public void testFindTasksByKeyword() {
+        TaskList taskList = new TaskList();
+        Task task1 = new ToDo("read book");
+        Task task2 = new ToDo("return book");
+        Task task3 = new ToDo("write code");
+        taskList.addTask(task1);
+        taskList.addTask(task2);
+        taskList.addTask(task3);
+
+        List<Task> result = taskList.findTasksByKeyword("book");
+        assertEquals(2, result.size());
+        assertTrue(result.contains(task1));
+        assertTrue(result.contains(task2));
     }
 }
