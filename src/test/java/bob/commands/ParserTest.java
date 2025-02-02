@@ -25,7 +25,8 @@ public class ParserTest {
 
     @Test
     public void testParseEvent() {
-        Command cmd = Parser.parse("event project meeting /from 10/10/2023 1800 /to 11/10/2023 1800");
+        Command cmd =
+                Parser.parse("event project meeting /from 10/10/2023 1800 /to 11/10/2023 1800");
         assertEquals(EventCommand.class, cmd.getClass());
         EventCommand eventCmd = (EventCommand) cmd;
         assertEquals("project meeting", eventCmd.getDescription());

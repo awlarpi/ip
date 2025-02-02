@@ -22,7 +22,8 @@ public class MarkCommand implements Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         if (taskNumber <= 0 || taskNumber > tasks.getSize()) {
-            throw new IndexOutOfBoundsException("Whoa there! That task number is out of bounds. Try again, buddy!");
+            throw new IndexOutOfBoundsException(
+                    "Whoa there! That task number is out of bounds. Try again, buddy!");
         }
         tasks.getTask(taskNumber - 1).markAsDone();
         ui.reply("Nice! I've marked this task as done:\n" + tasks.getTask(taskNumber - 1));

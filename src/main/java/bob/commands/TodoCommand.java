@@ -38,7 +38,7 @@ public class TodoCommand implements Command {
         }
         Task todoTask = new ToDo(description);
         tasks.addTask(todoTask);
-        ui.reply("Got it. I've added this task:\n  " + todoTask + "\nNow you have " + tasks.getSize()
-                + " tasks in the list.");
+        ui.reply("Got it. I've added this task:\n  " + todoTask + "\nNow you have "
+                + tasks.getSize() + " tasks in the list.");
     }
 }

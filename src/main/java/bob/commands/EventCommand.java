@@ -62,7 +62,7 @@ public class EventCommand implements Command {
         }
         Task eventTask = new Event(description, from, to);
         tasks.addTask(eventTask);
-        ui.reply("Got it. I've added this task:\n  " + eventTask + "\nNow you have " + tasks.getSize()
-                + " tasks in the list.");
+        ui.reply("Got it. I've added this task:\n  " + eventTask + "\nNow you have "
+                + tasks.getSize() + " tasks in the list.");
     }
 }

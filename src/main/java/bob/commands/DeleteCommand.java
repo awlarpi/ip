@@ -31,10 +31,11 @@ public class DeleteCommand implements Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         if (taskNumber <= 0 || taskNumber > tasks.getSize()) {
-            throw new IndexOutOfBoundsException("Whoa there! That task number is out of bounds. Try again, buddy!");
+            throw new IndexOutOfBoundsException(
+                    "Whoa there! That task number is out of bounds. Try again, buddy!");
         }
         Task removedTask = tasks.deleteTask(taskNumber - 1);
-        ui.reply("Noted. I've removed this task:\n  " + removedTask + "\nNow you have " + tasks.getSize()
-                + " tasks in the list.");
+        ui.reply("Noted. I've removed this task:\n  " + removedTask + "\nNow you have "
+                + tasks.getSize() + " tasks in the list.");
     }
 }
