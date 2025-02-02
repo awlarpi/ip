@@ -1,0 +1,21 @@
+{
+    "java.format.settings.url": "./eclipse-java-google-style.xml",
+    "java.format.settings.profile": "GoogleStyle",
+    "formatFiles.excludedFolders": [
+        "node_modules",
+        ".vscode",
+        ".git",
+        "dist",
+        ".chrome",
+        "bin",
+        ".gradle",
+        "gradle",
+        "build",
+        "data",
+        "text-ui-test",
+        ".settings",
+        ".vscode",
+        "docs"
+    ],
+    "formatFiles.runOrganizeImports": true,
+}

@@ -31,7 +31,7 @@ public class DeadlineCommand implements Command {
         }
         Task deadlineTask = new Deadline(description, by);
         tasks.addTask(deadlineTask);
-        ui.reply("Got it. I've added this task:\n  " + deadlineTask + "\nNow you have " + tasks.getSize()
-                + " tasks in the list.");
+        ui.reply("Got it. I've added this task:\n  " + deadlineTask + "\nNow you have "
+                + tasks.getSize() + " tasks in the list.");
     }
 }
