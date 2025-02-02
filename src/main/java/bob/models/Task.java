@@ -1,4 +1,4 @@
-package bob;
+package bob.models;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package bob;
+package bob.ui;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.junit.jupiter.api.Test;
@@ -9,12 +9,6 @@ public class UiTest {
     public void testShowWelcome() {
         Ui ui = new Ui();
         assertDoesNotThrow(ui::showWelcome);
-    }
-
-    @Test
-    public void testShowGoodbye() {
-        Ui ui = new Ui();
-        assertDoesNotThrow(ui::showGoodbye);
     }
 
     @Test

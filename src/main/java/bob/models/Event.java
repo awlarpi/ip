@@ -1,16 +1,16 @@
-package bob;
+package bob.models;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class Events extends Task {
+public class Event extends Task {
     private LocalDateTime from;
     private LocalDateTime to;
     private static final DateTimeFormatter INPUT_FORMATTER = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
     private static final DateTimeFormatter OUTPUT_FORMATTER = DateTimeFormatter.ofPattern("d MMM yyyy, h:mma");
 
-    public Events(String description, String from, String to) {
+    public Event(String description, String from, String to) {
         super(description);
         try {
             this.from = LocalDateTime.parse(from, INPUT_FORMATTER);

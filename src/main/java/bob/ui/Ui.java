@@ -1,9 +1,10 @@
-package bob;
+package bob.ui;
 
 import java.util.Scanner;
 
 public class Ui {
     private Scanner scanner;
+    private String lastReply;
 
     public Ui() {
         this.scanner = new Scanner(System.in);
@@ -14,8 +15,9 @@ public class Ui {
         System.out.println("What can I do for you?");
     }
 
-    public void showGoodbye() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public void close() {
+        scanner.close();
+        System.out.println("Goodbye, have a nice day!");
     }
 
     public String readCommand() {
@@ -28,9 +30,10 @@ public class Ui {
 
     public void reply(String message) {
         System.out.println(message);
+        this.lastReply = message;
     }
 
-    public void cleanup() {
-        scanner.close();
+    public String getLastReply() {
+        return lastReply;
     }
 }
