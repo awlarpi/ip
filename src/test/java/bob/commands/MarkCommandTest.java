@@ -2,7 +2,6 @@ package bob.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-
 import bob.models.TaskList;
 import bob.models.ToDo;
 import bob.storage.Storage;

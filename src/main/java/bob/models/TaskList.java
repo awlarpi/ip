@@ -1,6 +1,8 @@
 package bob.models;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Represents a list of tasks.
@@ -69,6 +71,11 @@ public class TaskList {
      */
     public ArrayList<Task> getTasks() {
         return tasks;
+    }
+
+    public List<Task> findTasksByKeyword(String keyword) {
+        return tasks.stream().filter(task -> task.getDescription().contains(keyword))
+                .collect(Collectors.toList());
     }
 
     /**

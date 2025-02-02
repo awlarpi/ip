@@ -1,13 +1,11 @@
 package bob.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
-
-import bob.models.Task;
-import bob.models.ToDo;
-
 import java.io.IOException;
 import java.util.ArrayList;
+import org.junit.jupiter.api.Test;
+import bob.models.Task;
+import bob.models.ToDo;
 
 public class StorageTest {
 

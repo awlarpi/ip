@@ -1,7 +1,6 @@
 package bob.commands;
 
 import java.io.IOException;
-
 import bob.models.TaskList;
 import bob.storage.Storage;
 import bob.ui.Ui;
