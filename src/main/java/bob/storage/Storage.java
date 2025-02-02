@@ -37,15 +37,15 @@ public class Storage {
         if (!file.exists()) {
             file.getParentFile().mkdirs(); // Create directories if they do not exist
             ArrayList<Task> tasks = new ArrayList<>();
-            try {
-                save(tasks);
-            } catch (IOException e) {
-                throw new IOException("Error creating new file: " + e.getMessage());
-            }
+            save(tasks);
             return tasks;
         }
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
             return (ArrayList<Task>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            ArrayList<Task> tasks = new ArrayList<>();
+            save(tasks);
+            return tasks;
         }
     }
 
