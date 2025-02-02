@@ -1,6 +1,15 @@
 package bob.commands;
 
+/**
+ * Parses user input into commands.
+ */
 public class Parser {
+    /**
+     * Parses the user input into a command.
+     *
+     * @param input The user input.
+     * @return The command.
+     */
     public static Command parse(String input) {
         String[] parts = input.split(" ", 2);
         String firstWord = parts[0];

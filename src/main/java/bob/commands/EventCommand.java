@@ -6,25 +6,50 @@ import bob.models.TaskList;
 import bob.storage.Storage;
 import bob.ui.Ui;
 
+/**
+ * Represents a command to add an event task.
+ */
 public class EventCommand implements Command {
     private String description;
     private String from;
     private String to;
 
+    /**
+     * Constructs an EventCommand with the specified description, start time, and end time.
+     *
+     * @param description The description of the event task.
+     * @param from The start time of the event.
+     * @param to The end time of the event.
+     */
     public EventCommand(String description, String from, String to) {
         this.description = description;
         this.from = from;
         this.to = to;
     }
 
+    /**
+     * Gets the description of the event task.
+     *
+     * @return The description of the event task.
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Gets the start time of the event.
+     *
+     * @return The start time of the event.
+     */
     public String getFrom() {
         return from;
     }
 
+    /**
+     * Gets the end time of the event.
+     *
+     * @return The end time of the event.
+     */
     public String getTo() {
         return to;
     }

@@ -4,9 +4,17 @@ import bob.models.TaskList;
 import bob.storage.Storage;
 import bob.ui.Ui;
 
+/**
+ * Represents a command to mark a task as done.
+ */
 public class MarkCommand implements Command {
     private int taskNumber;
 
+    /**
+     * Constructs a MarkCommand with the specified task number.
+     *
+     * @param taskNumber The task number to mark as done.
+     */
     public MarkCommand(int taskNumber) {
         this.taskNumber = taskNumber;
     }

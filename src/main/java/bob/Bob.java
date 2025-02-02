@@ -9,11 +9,19 @@ import bob.models.TaskList;
 import bob.storage.Storage;
 import bob.ui.Ui;
 
+/**
+ * Represents the main class for the Bob application.
+ */
 public class Bob {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructs a Bob object with the specified file path.
+     *
+     * @param filePath The file path to load and save tasks.
+     */
     public Bob(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -25,6 +33,9 @@ public class Bob {
         }
     }
 
+    /**
+     * Runs the Bob application.
+     */
     public void run() {
         ui.showWelcome();
         while (true) {
@@ -47,6 +58,11 @@ public class Bob {
         ui.close();
     }
 
+    /**
+     * The main method to start the Bob application.
+     *
+     * @param args Command line arguments.
+     */
     public static void main(String[] args) {
         new Bob("data/tasks.txt").run();
     }
