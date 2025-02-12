@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+
 import bob.models.Task;
 
 /**
@@ -28,8 +29,9 @@ public class Storage {
      * Loads the tasks from the file.
      *
      * @return A list of tasks loaded from the file.
-     * @throws IOException If an I/O error occurs.
-     * @throws ClassNotFoundException If the class of a serialized object cannot be found.
+     * @throws IOException            If an I/O error occurs.
+     * @throws ClassNotFoundException If the class of a serialized object cannot be
+     *                                found.
      */
     @SuppressWarnings("unchecked")
     public ArrayList<Task> load() throws IOException, ClassNotFoundException {

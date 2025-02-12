@@ -1,6 +1,7 @@
 package bob;
 
 import java.io.IOException;
+
 import bob.commands.ByeCommand;
 import bob.commands.Command;
 import bob.commands.Parser;

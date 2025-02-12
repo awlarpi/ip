@@ -15,11 +15,12 @@ public class EventCommand implements Command {
     private String to;
 
     /**
-     * Constructs an EventCommand with the specified description, start time, and end time.
+     * Constructs an EventCommand with the specified description, start time, and
+     * end time.
      *
      * @param description The description of the event task.
-     * @param from The start time of the event.
-     * @param to The end time of the event.
+     * @param from        The start time of the event.
+     * @param to          The end time of the event.
      */
     public EventCommand(String description, String from, String to) {
         this.description = description;

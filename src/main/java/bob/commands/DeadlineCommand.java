@@ -14,10 +14,11 @@ public class DeadlineCommand implements Command {
     private String by;
 
     /**
-     * Constructs a DeadlineCommand with the specified description and deadline date.
+     * Constructs a DeadlineCommand with the specified description and deadline
+     * date.
      *
      * @param description The description of the deadline task.
-     * @param by The deadline date.
+     * @param by          The deadline date.
      */
     public DeadlineCommand(String description, String by) {
         this.description = description;

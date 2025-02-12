@@ -1,6 +1,4 @@
 {
-    "java.format.settings.url": "./eclipse-java-google-style.xml",
-    "java.format.settings.profile": "GoogleStyle",
     "formatFiles.excludedFolders": [
         "node_modules",
         ".vscode",
@@ -18,4 +16,8 @@
         "docs"
     ],
     "formatFiles.runOrganizeImports": true,
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.checkstyle.configuration": "${workspaceFolder}\\config\\checkstyle\\checkstyle.xml",
+    "editor.formatOnPaste": false,
+    "java.format.settings.url": "./config/checkstyle/checkstyle.xml",
 }

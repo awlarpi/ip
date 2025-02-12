@@ -23,8 +23,8 @@ public class DeleteCommand implements Command {
     /**
      * Executes the delete command.
      *
-     * @param tasks The task list.
-     * @param ui The user interface.
+     * @param tasks   The task list.
+     * @param ui      The user interface.
      * @param storage The storage.
      * @throws IndexOutOfBoundsException If the task number is out of bounds.
      */

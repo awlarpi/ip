@@ -1,6 +1,7 @@
 package bob.commands;
 
 import java.io.IOException;
+
 import bob.models.TaskList;
 import bob.storage.Storage;
 import bob.ui.Ui;
@@ -12,8 +13,8 @@ public interface Command {
     /**
      * Executes the command.
      *
-     * @param tasks The task list.
-     * @param ui The user interface.
+     * @param tasks   The task list.
+     * @param ui      The user interface.
      * @param storage The storage.
      * @throws IOException If an I/O error occurs.
      */
