@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import bob.models.Task;
 import bob.models.TaskList;
 import bob.models.ToDo;
-import bob.storage.Storage;
-import bob.ui.Ui;
 
 public class DeleteCommandTest {
 
@@ -17,10 +15,9 @@ public class DeleteCommandTest {
         TaskList tasks = new TaskList();
         Task task = new ToDo("Test ToDo");
         tasks.addTask(task);
-        Ui ui = new Ui();
-        Storage storage = new Storage("data/test_tasks.txt");
         DeleteCommand cmd = new DeleteCommand(1);
-        cmd.execute(tasks, ui, storage);
+        String result = cmd.execute(tasks);
+        assertEquals("Noted. I've removed this task:\n  [T][ ] Test ToDo\nNow you have 0 tasks in the list.", result);
         assertEquals(0, tasks.getSize());
     }
 }

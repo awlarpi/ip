@@ -1,8 +1,6 @@
 package bob.commands;
 
 import bob.models.TaskList;
-import bob.storage.Storage;
-import bob.ui.Ui;
 
 /**
  * Represents a command to mark a task as done.
@@ -20,12 +18,12 @@ public class MarkCommand implements Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks) {
         if (taskNumber <= 0 || taskNumber > tasks.getSize()) {
             throw new IndexOutOfBoundsException(
                     "Whoa there! That task number is out of bounds. Try again, buddy!");
         }
         tasks.getTask(taskNumber - 1).markAsDone();
-        ui.reply("Nice! I've marked this task as done:\n" + tasks.getTask(taskNumber - 1));
+        return "Nice! I've marked this task as done:\n" + tasks.getTask(taskNumber - 1);
     }
 }

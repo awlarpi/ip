@@ -3,8 +3,6 @@ package bob.commands;
 import bob.models.Deadline;
 import bob.models.Task;
 import bob.models.TaskList;
-import bob.storage.Storage;
-import bob.ui.Ui;
 
 /**
  * Represents a command to add a deadline task.
@@ -44,14 +42,14 @@ public class DeadlineCommand implements Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks) {
         if (description.isEmpty() || by.isEmpty()) {
             throw new IllegalArgumentException(
                     "Hey! The description and deadline date cannot be empty. Give me something to work with!");
         }
         Task deadlineTask = new Deadline(description, by);
         tasks.addTask(deadlineTask);
-        ui.reply("Got it. I've added this task:\n  " + deadlineTask + "\nNow you have "
-                + tasks.getSize() + " tasks in the list.");
+        return "Got it. I've added this task:\n  " + deadlineTask + "\nNow you have "
+                + tasks.getSize() + " tasks in the list.";
     }
 }

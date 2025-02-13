@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import bob.models.TaskList;
 import bob.models.ToDo;
-import bob.storage.Storage;
-import bob.ui.Ui;
 
 public class MarkCommandTest {
 
@@ -15,10 +13,9 @@ public class MarkCommandTest {
     public void testExecute() {
         TaskList tasks = new TaskList();
         tasks.addTask(new ToDo("Test ToDo"));
-        Ui ui = new Ui();
-        Storage storage = new Storage("data/test_tasks.txt");
         MarkCommand cmd = new MarkCommand(1);
-        cmd.execute(tasks, ui, storage);
+        String result = cmd.execute(tasks);
+        assertEquals("Nice! I've marked this task as done:\n[T][X] Test ToDo", result);
         assertEquals("[T][X] Test ToDo", tasks.getTask(0).toString());
     }
 }

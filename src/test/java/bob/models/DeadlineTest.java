@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class DeadlinesTest {
+public class DeadlineTest {
 
     @Test
     public void testDeadlineToString() {
