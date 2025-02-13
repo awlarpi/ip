@@ -36,6 +36,17 @@ public class TaskList {
     }
 
     /**
+     * Adds multiple tasks to the list.
+     *
+     * @param tasks The tasks to add.
+     */
+    public void addTasks(Task... tasks) {
+        for (Task task : tasks) {
+            this.tasks.add(task);
+        }
+    }
+
+    /**
      * Deletes a task from the list.
      *
      * @param index The index of the task to delete.
