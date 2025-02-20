@@ -40,9 +40,10 @@ public class Bob {
      */
     public String getResponse(String input) {
         try {
-            Command command = parseCommand(input);
-            String response = executeCommand(command);
-            saveTasks();
+            Command command = Parser.parse(input);
+            assert command != null : "Command should not be null";
+            String response = command.execute(tasks);
+            storage.save(tasks.getTasks());
             return response;
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Failed to save tasks", e);
