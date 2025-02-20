@@ -1,5 +1,7 @@
 package bob.commands;
 
+import bob.exceptions.InvalidDateException;
+import bob.exceptions.MissingArgumentException;
 import bob.models.Event;
 import bob.models.Task;
 import bob.models.TaskList;
@@ -54,9 +56,9 @@ public class EventCommand implements Command {
     }
 
     @Override
-    public String execute(TaskList tasks) {
+    public String execute(TaskList tasks) throws MissingArgumentException, InvalidDateException {
         if (description.isEmpty() || from.isEmpty() || to.isEmpty()) {
-            throw new IllegalArgumentException(
+            throw new MissingArgumentException(
                     "Hey! The description, start time, and end time cannot be empty. Give me something to work with!");
         }
         Task eventTask = new Event(description, from, to);

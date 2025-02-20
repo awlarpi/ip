@@ -1,5 +1,6 @@
 package bob.commands;
 
+import bob.exceptions.TaskNumberOutOfBoundsException;
 import bob.models.Task;
 import bob.models.TaskList;
 
@@ -19,9 +20,9 @@ public class DeleteCommand implements Command {
     }
 
     @Override
-    public String execute(TaskList tasks) {
+    public String execute(TaskList tasks) throws TaskNumberOutOfBoundsException {
         if (taskNumber <= 0 || taskNumber > tasks.getSize()) {
-            throw new IndexOutOfBoundsException(
+            throw new TaskNumberOutOfBoundsException(
                     "Whoa there! That task number is out of bounds. Try again, buddy!");
         }
         Task removedTask = tasks.deleteTask(taskNumber - 1);

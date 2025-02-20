@@ -1,5 +1,6 @@
 package bob.commands;
 
+import bob.exceptions.MissingArgumentException;
 import bob.models.Task;
 import bob.models.TaskList;
 import bob.models.ToDo;
@@ -29,9 +30,9 @@ public class TodoCommand implements Command {
     }
 
     @Override
-    public String execute(TaskList tasks) {
+    public String execute(TaskList tasks) throws MissingArgumentException {
         if (description.isEmpty()) {
-            throw new IllegalArgumentException(
+            throw new MissingArgumentException(
                     "Hey! The description of a todo cannot be empty. Give me something to do!");
         }
         Task todoTask = new ToDo(description);

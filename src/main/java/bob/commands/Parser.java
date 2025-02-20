@@ -1,5 +1,8 @@
 package bob.commands;
 
+import bob.exceptions.MissingArgumentException;
+import bob.exceptions.UnknownCommandException;
+
 /**
  * Parses user input into commands.
  */
@@ -9,8 +12,10 @@ public class Parser {
      *
      * @param input The user input.
      * @return The command.
+     * @throws MissingArgumentException If the command format is incorrect.
+     * @throws UnknownCommandException
      */
-    public static Command parse(String input) {
+    public static Command parse(String input) throws MissingArgumentException, UnknownCommandException {
         String[] parts = input.split(" ", 2);
         String firstWord = parts[0];
         String arguments = parts.length > 1 ? parts[1] : "";
@@ -38,7 +43,7 @@ public class Parser {
         case "delete":
             return new DeleteCommand(Integer.parseInt(arguments.trim()));
         default:
-            throw new IllegalArgumentException("Yikes! I'm not sure what you're trying to say. Try again!");
+            throw new UnknownCommandException();
         }
     }
 
@@ -77,12 +82,12 @@ public class Parser {
      *
      * @param arguments The arguments for the deadline command.
      * @return The deadline command.
-     * @throws IllegalArgumentException If the deadline command format is incorrect.
+     * @throws MissingArgumentException If the deadline command format is incorrect.
      */
-    private static Command parseDeadlineCommand(String arguments) {
+    private static Command parseDeadlineCommand(String arguments) throws MissingArgumentException {
         String[] deadlineParts = arguments.split(" /by ");
         if (deadlineParts.length < 2) {
-            throw new IllegalArgumentException(
+            throw new MissingArgumentException(
                     "Yikes! The deadline command format is all wrong. Give it another shot!");
         }
         return new DeadlineCommand(deadlineParts[0].trim(), deadlineParts[1].trim());
@@ -93,16 +98,16 @@ public class Parser {
      *
      * @param arguments The arguments for the event command.
      * @return The event command.
-     * @throws IllegalArgumentException If the event command format is incorrect.
+     * @throws MissingArgumentException If the event command format is incorrect.
      */
-    private static Command parseEventCommand(String arguments) {
+    private static Command parseEventCommand(String arguments) throws MissingArgumentException {
         String[] eventParts = arguments.split(" /from ");
         if (eventParts.length < 2) {
-            throw new IllegalArgumentException("Yikes! The event command format is all wrong. Give it another shot!");
+            throw new MissingArgumentException("Yikes! The event command format is all wrong. Give it another shot!");
         }
         String[] times = eventParts[1].split(" /to ");
         if (times.length < 2) {
-            throw new IllegalArgumentException("Yikes! The event command format is all wrong. Give it another shot!");
+            throw new MissingArgumentException("Yikes! The event command format is all wrong. Give it another shot!");
         }
         return new EventCommand(eventParts[0].trim(), times[0].trim(), times[1].trim());
     }

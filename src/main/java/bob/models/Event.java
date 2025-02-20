@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import bob.exceptions.InvalidDateException;
+
 /**
  * Represents an event task.
  */
@@ -19,15 +21,15 @@ public class Event extends Task {
      * @param description The description of the event task.
      * @param from        The start time of the event.
      * @param to          The end time of the event.
-     * @throws IllegalArgumentException If the date format is invalid.
+     * @throws InvalidDateException If the date format is invalid.
      */
-    public Event(String description, String from, String to) {
+    public Event(String description, String from, String to) throws InvalidDateException {
         super(description);
         try {
             this.from = LocalDateTime.parse(from, INPUT_FORMATTER);
             this.to = LocalDateTime.parse(to, INPUT_FORMATTER);
         } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException("Invalid date format. Please use 'd/M/yyyy HHmm'.");
+            throw new InvalidDateException();
         }
     }
 

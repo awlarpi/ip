@@ -1,5 +1,7 @@
 package bob.commands;
 
+import bob.exceptions.InvalidDateException;
+import bob.exceptions.MissingArgumentException;
 import bob.models.Deadline;
 import bob.models.Task;
 import bob.models.TaskList;
@@ -42,9 +44,9 @@ public class DeadlineCommand implements Command {
     }
 
     @Override
-    public String execute(TaskList tasks) {
+    public String execute(TaskList tasks) throws MissingArgumentException, InvalidDateException {
         if (description.isEmpty() || by.isEmpty()) {
-            throw new IllegalArgumentException(
+            throw new MissingArgumentException(
                     "Hey! The description and deadline date cannot be empty. Give me something to work with!");
         }
         Task deadlineTask = new Deadline(description, by);

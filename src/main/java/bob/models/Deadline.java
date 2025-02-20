@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import bob.exceptions.InvalidDateException;
+
 /**
  * Represents a deadline task.
  */
@@ -17,13 +19,14 @@ public class Deadline extends Task {
      *
      * @param description The description of the deadline task.
      * @param by          The deadline date.
+     * @throws InvalidDateException If the date format is invalid.
      */
-    public Deadline(String description, String by) {
+    public Deadline(String description, String by) throws InvalidDateException {
         super(description);
         try {
             this.by = LocalDateTime.parse(by, INPUT_FORMATTER);
         } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException("Invalid date format. Please use 'd/M/yyyy HHmm'.");
+            throw new InvalidDateException();
         }
     }
 

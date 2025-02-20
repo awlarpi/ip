@@ -1,5 +1,6 @@
 package bob.commands;
 
+import bob.exceptions.CommandException;
 import bob.models.TaskList;
 
 /**
@@ -11,5 +12,5 @@ public interface Command {
      *
      * @param tasks The task list.
      */
-    String execute(TaskList tasks);
+    String execute(TaskList tasks) throws CommandException;
 }

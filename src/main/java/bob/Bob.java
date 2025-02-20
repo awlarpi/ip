@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import bob.commands.Command;
 import bob.commands.Parser;
+import bob.exceptions.CommandException;
 import bob.models.TaskList;
 import bob.storage.Storage;
 
@@ -48,7 +49,7 @@ public class Bob {
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Failed to save tasks", e);
             return "Error: Failed to save tasks.";
-        } catch (IllegalArgumentException e) {
+        } catch (CommandException e) {
             return "Error: " + e.getMessage();
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Unexpected error", e);
