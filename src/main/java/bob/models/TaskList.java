@@ -3,6 +3,7 @@ package bob.models;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Represents a list of tasks.
@@ -85,6 +86,28 @@ public class TaskList {
     }
 
     /**
+     * Gets the list of completed tasks.
+     *
+     * @return A list of completed tasks.
+     */
+    public List<Task> getCompletedTasks() {
+        return tasks.stream()
+                .filter(Task::isDone)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Gets the descriptions of all tasks.
+     *
+     * @return A list of task descriptions.
+     */
+    public List<String> getTaskDescriptions() {
+        return tasks.stream()
+                .map(Task::getDescription)
+                .collect(Collectors.toList());
+    }
+
+    /**
      * Finds tasks in the list that contain the specified keyword.
      *
      * @param keyword The keyword to search for.
@@ -102,13 +125,8 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < tasks.size(); i++) {
-            sb.append(i + 1).append(". ").append(tasks.get(i));
-            if (i < tasks.size() - 1) {
-                sb.append("\n");
-            }
-        }
-        return sb.toString();
+        return IntStream.range(0, tasks.size())
+                .mapToObj(i -> (i + 1) + ". " + tasks.get(i))
+                .collect(Collectors.joining("\n"));
     }
 }

@@ -1,6 +1,8 @@
 package bob;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import bob.commands.Command;
 import bob.commands.Parser;
@@ -11,6 +13,7 @@ import bob.storage.Storage;
  * Represents the main class for the Bob application.
  */
 public class Bob {
+    private static final Logger logger = Logger.getLogger(Bob.class.getName());
     private Storage storage;
     private TaskList tasks;
 
@@ -24,12 +27,16 @@ public class Bob {
         try {
             tasks = new TaskList(storage.load());
         } catch (IOException | ClassNotFoundException e) {
+            logger.log(Level.SEVERE, "Failed to load tasks", e);
             tasks = new TaskList();
         }
     }
 
     /**
      * Generates a response for the user's chat message.
+     *
+     * @param input The user's chat message.
+     * @return The response to the user's chat message.
      */
     public String getResponse(String input) {
         try {
@@ -38,8 +45,43 @@ public class Bob {
             String response = command.execute(tasks);
             storage.save(tasks.getTasks());
             return response;
-        } catch (Exception e) {
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "Failed to save tasks", e);
+            return "Error: Failed to save tasks.";
+        } catch (IllegalArgumentException e) {
             return "Error: " + e.getMessage();
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Unexpected error", e);
+            return "Error: An unexpected error occurred.";
         }
+    }
+
+    /**
+     * Parses the user input into a command.
+     *
+     * @param input The user input.
+     * @return The parsed command.
+     */
+    private Command parseCommand(String input) {
+        return Parser.parse(input);
+    }
+
+    /**
+     * Executes the given command.
+     *
+     * @param command The command to execute.
+     * @return The result of the command execution.
+     */
+    private String executeCommand(Command command) {
+        return command.execute(tasks);
+    }
+
+    /**
+     * Saves the current tasks to storage.
+     *
+     * @throws IOException If an I/O error occurs while saving tasks.
+     */
+    private void saveTasks() throws IOException {
+        storage.save(tasks.getTasks());
     }
 }
