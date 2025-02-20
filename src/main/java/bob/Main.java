@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 
 /**
  * A GUI for Bob using FXML.
+ * 
+ * Adapted from https://se-education.org/guides/tutorials/javaFxPart4.html
  */
 public class Main extends Application {
 
