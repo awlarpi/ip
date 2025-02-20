@@ -55,33 +55,4 @@ public class Bob {
             return "Error: An unexpected error occurred.";
         }
     }
-
-    /**
-     * Parses the user input into a command.
-     *
-     * @param input The user input.
-     * @return The parsed command.
-     */
-    private Command parseCommand(String input) {
-        return Parser.parse(input);
-    }
-
-    /**
-     * Executes the given command.
-     *
-     * @param command The command to execute.
-     * @return The result of the command execution.
-     */
-    private String executeCommand(Command command) {
-        return command.execute(tasks);
-    }
-
-    /**
-     * Saves the current tasks to storage.
-     *
-     * @throws IOException If an I/O error occurs while saving tasks.
-     */
-    private void saveTasks() throws IOException {
-        storage.save(tasks.getTasks());
-    }
 }

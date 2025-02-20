@@ -25,10 +25,13 @@ public class Parser {
         case "unmark":
             return parseUnmarkCommand(arguments);
         case "todo":
+        case "t":
             return parseTodoCommand(arguments);
         case "deadline":
+        case "d":
             return parseDeadlineCommand(arguments);
         case "event":
+        case "e":
             return parseEventCommand(arguments);
         case "find":
             return new FindCommand(arguments.trim());
