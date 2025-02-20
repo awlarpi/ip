@@ -86,6 +86,28 @@ public class TaskList {
     }
 
     /**
+     * Gets the list of completed tasks.
+     *
+     * @return A list of completed tasks.
+     */
+    public List<Task> getCompletedTasks() {
+        return tasks.stream()
+                .filter(Task::isDone)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Gets the descriptions of all tasks.
+     *
+     * @return A list of task descriptions.
+     */
+    public List<String> getTaskDescriptions() {
+        return tasks.stream()
+                .map(Task::getDescription)
+                .collect(Collectors.toList());
+    }
+
+    /**
      * Finds tasks in the list that contain the specified keyword.
      *
      * @param keyword The keyword to search for.

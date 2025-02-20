@@ -29,8 +29,22 @@ public class Task implements Serializable {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    /**
+     * Gets the description of the task.
+     *
+     * @return The description of the task.
+     */
     public String getDescription() {
         return description;
+    }
+
+    /**
+     * Checks if the task is done.
+     *
+     * @return true if the task is done, false otherwise.
+     */
+    public boolean isDone() {
+        return isDone;
     }
 
     /**
