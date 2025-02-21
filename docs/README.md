@@ -10,9 +10,17 @@ You can add a deadline task using the `deadline` command. The format is:
 ```
 deadline <task description> /by <deadline>
 ```
+You can also use the shortcut `d`:
+```
+d <task description> /by <deadline>
+```
 Example:
 ```
 deadline Submit assignment /by 10/10/2023 1800
+```
+or
+```
+d Submit assignment /by 10/10/2023 1800
 ```
 Expected output:
 ```
@@ -27,9 +35,17 @@ You can add an event task using the `event` command. The format is:
 ```
 event <event description> /from <start time> /to <end time>
 ```
+You can also use the shortcut `e`:
+```
+e <event description> /from <start time> /to <end time>
+```
 Example:
 ```
 event Team meeting /from 10/10/2023 1000 /to 10/10/2023 1200
+```
+or
+```
+e Team meeting /from 10/10/2023 1000 /to 10/10/2023 1200
 ```
 Expected output:
 ```
@@ -44,9 +60,17 @@ You can add a todo task using the `todo` command. The format is:
 ```
 todo <task description>
 ```
+You can also use the shortcut `t`:
+```
+t <task description>
+```
 Example:
 ```
 todo Read book
+```
+or
+```
+t Read book
 ```
 Expected output:
 ```
