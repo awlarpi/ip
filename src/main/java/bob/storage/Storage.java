@@ -37,7 +37,7 @@ public class Storage {
     public ArrayList<Task> load() throws IOException, ClassNotFoundException {
         File file = new File(filePath);
         if (!file.exists()) {
-            file.getParentFile().mkdirs(); // Create directories if they do not exist
+            file.getParentFile().mkdirs();
             ArrayList<Task> tasks = new ArrayList<>();
             save(tasks);
             return tasks;
@@ -59,7 +59,7 @@ public class Storage {
      */
     public void save(ArrayList<Task> tasks) throws IOException {
         File file = new File(filePath);
-        file.getParentFile().mkdirs(); // Create directories if they do not exist
+        file.getParentFile().mkdirs();
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
             oos.writeObject(tasks);
         }
