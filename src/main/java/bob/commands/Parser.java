@@ -16,7 +16,11 @@ public class Parser {
      * @throws UnknownCommandException
      */
     public static Command parse(String input) throws MissingArgumentException, UnknownCommandException {
-        String[] parts = input.split(" ", 2);
+        String trimmedInput = input.trim();
+        if (trimmedInput.isEmpty()) {
+            throw new UnknownCommandException();
+        }
+        String[] parts = trimmedInput.split(" ", 2);
         String firstWord = parts[0];
         String arguments = parts.length > 1 ? parts[1] : "";
 
